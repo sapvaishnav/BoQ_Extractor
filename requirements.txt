@@ -1,0 +1,7 @@
+flask
+ezdxf
+pymupdf
+pytesseract
+pillow
+pandas
+openpyxl

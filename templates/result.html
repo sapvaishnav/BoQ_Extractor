@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BoQ Summary Results</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #eef2f5;
+      padding: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .controls {
+      max-width: 1000px;
+      margin: 0 auto 20px auto;
+      text-align: center;
+    }
+    .controls input {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      padding: 10px 16px;
+      margin: 5px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #2980b9;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 95%;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 10px 14px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .pagination button {
+      margin: 0 5px;
+      padding: 8px 12px;
+      border: none;
+      background: #3498db;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .pagination button:disabled {
+      background: #ccc;
+    }
+    .preview {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .preview img {
+      max-width: 90%;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>BoQ Summary</h2>
+
+  <div class="controls">
+    <a class="btn" href="/">⬅ Upload Another</a>
+    <a class="btn" href="/output/BoQ_Summary.xlsx" download>⬇ Download Excel</a>
+    <a class="btn" href="/output/BoQ_Summary.csv" download>⬇ Download CSV</a>
+    <br><br>
+    <input type="text" id="filterInput" placeholder="🔍 Filter by any column..." onkeyup="filterTable()" />
+
+    {% if drawing_exists %}
+      <br><br>
+      <button class="btn" onclick="togglePreview()">🖼️ Toggle Drawing Preview</button>
+      <div class="preview" id="drawingPreview" style="display: none;">
+        <h3>Drawing Preview:</h3>
+        <img src="/{{ drawing_file }}" alt="Drawing Preview" />
+      </div>
+    {% endif %}
+  </div>
+
+  <table id="boqTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Layer</th>
+        <th onclick="sortTable(1)">Entity Type</th>
+        <th onclick="sortTable(2)">Material Key</th>
+        <th onclick="sortTable(3)">Partition Ref</th>
+        <th onclick="sortTable(4)">Linear (m)</th>
+        <th onclick="sortTable(5)">Area (m²)</th>
+        <th onclick="sortTable(6)">Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in table_data %}
+      <tr>
+        <td>{{ row['Layer'] }}</td>
+        <td>{{ row['Entity Type'] }}</td>
+        <td>{{ row['Material Key'] }}</td>
+        <td>{{ row['Partition Ref'] }}</td>
+        <td>{{ row['Linear (m)'] }}</td>
+        <td>{{ row['Area (m²)'] }}</td>
+        <td>{{ row['Count'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="pagination" id="pagination"></div>
+
+  <script>
+    const rowsPerPage = 15;
+    let currentPage = 1;
+    const table = document.getElementById("boqTable");
+    const rows = Array.from(table.getElementsByTagName("tbody")[0].rows);
+    const pagination = document.getElementById("pagination");
+
+    function displayPage(page) {
+      const start = (page - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+      rows.forEach((row, index) => {
+        row.style.display = index >= start && index < end ? "" : "none";
+      });
+      updatePagination(page);
+    }
+
+    function updatePagination(page) {
+      pagination.innerHTML = "";
+      const totalPages = Math.ceil(rows.length / rowsPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        btn.disabled = i === page;
+        btn.onclick = () => {
+          currentPage = i;
+          displayPage(i);
+        };
+        pagination.appendChild(btn);
+      }
+    }
+
+    function filterTable() {
+      const filter = document.getElementById("filterInput").value.toUpperCase();
+      rows.forEach(row => {
+        const visible = Array.from(row.cells).some(cell => cell.textContent.toUpperCase().includes(filter));
+        row.style.display = visible ? "" : "none";
+      });
+    }
+
+    function sortTable(n) {
+      const tbody = table.getElementsByTagName("tbody")[0];
+      const newRows = Array.from(tbody.rows);
+      const ascending = table.dataset.sortOrder !== "asc";
+      newRows.sort((a, b) => {
+        let x = a.cells[n].innerText.toLowerCase();
+        let y = b.cells[n].innerText.toLowerCase();
+        return ascending ? (x > y ? 1 : -1) : (x < y ? 1 : -1);
+      });
+      newRows.forEach(row => tbody.appendChild(row));
+      table.dataset.sortOrder = ascending ? "asc" : "desc";
+    }
+
+    function togglePreview() {
+      const section = document.getElementById("drawingPreview");
+      section.style.display = section.style.display === "none" ? "block" : "none";
+    }
+
+    // Initial setup
+    displayPage(currentPage);
+  </script>
+</body>
+</html>

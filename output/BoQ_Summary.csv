@@ -1,0 +1,56 @@
+Layer,Entity Type,Material Key,Partition Ref,Linear (m),Area (m²),Count
+A-ANNO-DIMS,DIMENSION,,,0.0,0.0,294
+A-AREA-IDEN,INSERT,,,0.0,0.0,8
+A-AREA-IDEN,MTEXT,,,0.0,0.0,27
+A-DETL,CIRCLE,,,0.0,0.28,1
+A-DETL,LINE,,,72.1,0.0,132
+A-DOOR,INSERT,,,0.0,0.0,54
+A-GENM,INSERT,,,0.0,0.0,42
+A-GLAZ,INSERT,,,0.0,0.0,1
+A-GLAZ-CURT,INSERT,,,0.0,0.0,132
+A-GLAZ-CWMG,INSERT,,,0.0,0.0,337
+A-WALL,LINE,,,100.55,0.0,62
+A-WALL-IDEN,LINE,,,51.1,0.0,99
+A-WALL-IDEN,MTEXT,,,0.0,0.0,21
+A-WALL-IDEN,MTEXT,,Acoustic Lining to Concrete - K10-165,0.0,0.0,2
+A-WALL-IDEN,MTEXT,,Bathroom acoustic wall with MF board - K10-129,0.0,0.0,7
+A-WALL-IDEN,MTEXT,,Double metal studs party walls - K10-125,0.0,0.0,9
+A-WALL-IDEN,MTEXT,,Drylining to Concrete - K10-175,0.0,0.0,10
+A-WALL-IDEN,MTEXT,,Internal Apartment Wall - K10-130,0.0,0.0,19
+A-WALL-IDEN,MTEXT,,Lining to Lift Wall - K10-176,0.0,0.0,5
+A-WALL-IDEN,MTEXT,,Party wall with Fire Moisture Board - K10-126,0.0,0.0,3
+A-WALL-IDEN,MTEXT,,Shaftwall 120min - K10-134,0.0,0.0,1
+A-WALL-IDEN,MTEXT,,Shaftwall Smoke Shaft - K10-138,0.0,0.0,1
+A-WALL-IDEN,MTEXT,,Siniat Single Frame - 120min Fire - K10-132,0.0,0.0,7
+A-WALL-IDEN,MTEXT,,Siniat metal stud partition - K10-128,0.0,0.0,9
+A-WALL-IDEN,MTEXT,,Vanity Boxing - K10-168,0.0,0.0,5
+G-ANNO-TEXT,LINE,,,58.04,0.0,26
+G-ANNO-TEXT,LWPOLYLINE,,,0.0,16.53,3
+G-ANNO-TEXT,MTEXT,,,0.0,0.0,81
+G-ANNO-TEXT,MTEXT,,Acoustic Lining to Concrete - K10-165,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Bathroom acoustic wall with MF board - K10-129,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Double Height Amenity Wall - K10-135,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Double metal studs party walls - K10-125,0.0,0.0,5
+G-ANNO-TEXT,MTEXT,,Drylining to Concrete - K10-175,0.0,0.0,2
+G-ANNO-TEXT,MTEXT,,Internal Apartment Wall - K10-130,0.0,0.0,2
+G-ANNO-TEXT,MTEXT,,Lining to Lift Wall - K10-176,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Party wall with Fire Moisture Board - K10-126,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Shaftwall 120min - K10-134,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Shaftwall Smoke Shaft - K10-138,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Siniat Single Frame - 120min Fire - K10-132,0.0,0.0,3
+G-ANNO-TEXT,MTEXT,,Siniat metal stud partition - K10-128,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Thinner Shaft Wall - K10-137,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,,Vanity Boxing - K10-168,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,Plaster Finish,,0.0,0.0,1
+G-ANNO-TEXT,MTEXT,Wall Paneling,,0.0,0.0,12
+I-WALL,INSERT,,,0.0,0.0,10
+I-WALL,LINE,,,712.37,0.0,1103
+M-EQPM,INSERT,,,0.0,0.0,1
+S-COLS,INSERT,,,0.0,0.0,15
+S-GRID,LINE,,,703.88,0.0,20
+S-GRID-IDEN,INSERT,,,0.0,0.0,26
+S-GRID-IDEN,MTEXT,,,0.0,0.0,26
+S-STRS,LINE,,,62.879999999999995,0.0,91
+S-STRS-ANNO,LINE,,,5.029999999999999,0.0,13
+S-STRS-IDEN,MTEXT,,,0.0,0.0,1
+S-STRS-MBND,LINE,,,21.71,0.0,24
